@@ -1,4 +1,4 @@
-= WP-Translations Badges =
+=== WP-Translations Badges ===
 Contributors: fxbenard, tripflex
 Donate link: http://wp-translations.org/donation/
 Tags: wp-translations, badges, shortcode, widget, i18n
