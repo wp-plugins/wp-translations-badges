@@ -17,7 +17,7 @@ Display WP-Translations badges on your website with Shortcode or Widget
 * Alignment
 * Translator, Developer, Donator, and Supporter badges
 
-=== Contributing and reporting bugs ===
+= Contributing and reporting bugs =
 
 You want to translate, help, or improve a translation.
 Join our WP-Translations Community at [WP-Translations](https://www.transifex.com/organization/wp-translations)
@@ -32,14 +32,18 @@ Or contact me at fxb@wp-translations.org
 
 == Installation ==
 
-* From your WordPress Website *
+= From your WordPress Website =
 Go to Plugins and then search for "WP-Translations Badges"
 
-* Manual Installation *
+= Manual Installation =
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from the Plugins page.
 
-* Usage *
-1. Add Widget or Shortcode
+== Screenshots ==
+
+1. Shortcode Button
+2. Shortcode Configuration
+3. Widget Configuration
+4. Badges Examples
 
 == Changelog ==
 
