@@ -20,8 +20,8 @@ $group = array(
 			'label'		=> 	__('Badge Type:','wp-translations-badges'),
 			'caption'	=>	__('Type of badge to display','wp-translations-badges'),
 			'type'		=>	'dropdown',
-			//* translators: Important don't translate translator, developer, donator, supporter */
-			'default'	=> 	__( '*translator||I\'m Translating,developer||I\'m Developing,donator||I\'m a Donator,supporter||I\'m a Supporter', 'wp-translations-badges' ),
+			//* translators: Important don't translate translator, developer, donor, supporter */
+			'default'	=> 	__( '*translator||I\'m Translating,developer||I\'m Developing,donor||I\'m a Donor,supporter||I\'m a Supporter', 'wp-translations-badges' ),
 		),
 		'alignment'	=>	array(
 			'label'		=> 	__('Alignment:','wp-translations-badges'),
