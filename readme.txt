@@ -22,7 +22,7 @@ Display WP-Translations badges on your website with Shortcode or Widget
 You want to translate, help, or improve a translation.
 Join our WP-Translations Community at [WP-Translations](https://www.transifex.com/organization/wp-translations)
 
-You want to contribute to the code, it's on GitHub: [https://github.com/WP-Translations/wp-translations-badges](https://github.com/WP-Translations/wp-translations-badges)
+You want to contribute to the code, it's on [GitHub](https://github.com/WP-Translations/wp-translations-badges)
 
 = Support =
 

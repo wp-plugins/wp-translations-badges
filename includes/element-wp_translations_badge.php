@@ -17,9 +17,9 @@
 	?>
     <a href="http://wp-translations.org/"><img src="<?php echo plugins_url( 'assets/images/wp_t_badge_developer.png', dirname(__FILE__) );?>" alt="<?php _e( 'I Use WP-Translations Community for my i18n', 'wp-translations-badges' );?>" title="<?php _e( 'I Use WP-Translations Community for my i18n', 'wp-translations-badges' );?>" width="150" height="134" /></a>
 	<?php
-		elseif($badge_type == 'donator'):
+		elseif($badge_type == 'donor'):
 	?>
-    <a href="http://wp-translations.org/"><img src="<?php echo plugins_url( 'assets/images/wp_t_badge_donator.png', dirname(__FILE__) );?>" alt="<?php _e( 'I am a Proud Donator of WP-Translations Community', 'wp-translations-badges' );?>" title="<?php _e( 'I am a Proud Donator of WP-Translations Community', 'wp-translations-badges' );?>" width="150" height="134" /></a>
+    <a href="http://wp-translations.org/"><img src="<?php echo plugins_url( 'assets/images/wp_t_badge_donator.png', dirname(__FILE__) );?>" alt="<?php _e( 'I am a Proud Donor of WP-Translations Community', 'wp-translations-badges' );?>" title="<?php _e( 'I am a Proud Donor of WP-Translations Community', 'wp-translations-badges' );?>" width="150" height="134" /></a>
 	<?php
 		elseif($badge_type == 'supporter'):
 	?>
