@@ -1,0 +1,155 @@
+# Copyright (C) 2014 WP-Translations Badges
+# This file is distributed under the same license as the WP-Translations Badges package.
+# Translators:
+# deblynprado, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: WP-Translations Badges\n"
+"Report-Msgid-Bugs-To: https://wp-translations.org/\n"
+"POT-Creation-Date: 2014-05-12 15:29:16+00:00\n"
+"PO-Revision-Date: 2014-05-13 04:21+0000\n"
+"Last-Translator: deblynprado\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/wp-translations-badges/language/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-Keywordslist: __;_e;__ngettext:1,2;_n:1,2;__ngettext_  noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Sourcecharset: utf-8\n"
+"X-Textdomain-Support: yes\n"
+
+#: class-wp-translations-badges.php:179
+msgid "Visit the GitHub plugin page"
+msgstr "Visite a página do plugin no Github"
+
+#: class-wp-translations-badges.php:180
+msgid "Join us on Transifex"
+msgstr "Junte-se a nós no Transifex"
+
+#: class-wp-translations-badges.php:180
+msgid "Translate"
+msgstr "Traduzir"
+
+#: class-wp-translations-badges.php:344
+msgid "WP-Translations Badges Shortcode Builder"
+msgstr "Construtor de Shortcode para os Badges do WP-Translations"
+
+#: class-wp-translations-badges.php:345 class-wp-translations-badges.php:513
+msgid "Insert Shortcode"
+msgstr "Inserir Shortcode"
+
+#: class-wp-translations-badges.php:345
+msgid "WP-T Badges"
+msgstr "Badges do WP-T"
+
+#: class-wp-translations-badges.php:364
+msgid "Your content goes here"
+msgstr "Seu conteúdo aqui"
+
+#: class-wp-translations-badges.php:438
+#: includes/widget-wp_translations_badge.php:179
+msgid "Add Another"
+msgstr "Adicionar Outro"
+
+#: class-wp-translations-badges.php:452
+#: includes/widget-wp_translations_badge.php:149
+#: includes/widget-wp_translations_badge.php:185
+msgid "Remove"
+msgstr "Remover"
+
+#. Plugin Name of the plugin/theme
+msgid "WP-Translations Badges"
+msgstr "Badges do WP-Translations"
+
+#: class-wp-translations-badges.php:503
+msgid "Shortcode Builder"
+msgstr "Construtor de Shortcode"
+
+#: configs/wp_translations_badge-configuration.php:15
+msgid "Configuration"
+msgstr "Configuração"
+
+#: configs/wp_translations_badge-configuration.php:20
+#: configs/wp_translations_badge-settings.php:20
+msgid "Badge Type:"
+msgstr "Tipo do Badge"
+
+#: configs/wp_translations_badge-configuration.php:21
+#: configs/wp_translations_badge-settings.php:21
+msgid "Type of badge to display"
+msgstr "Tipo de badge que será mostrado"
+
+#. translators: Important don't translate translator, developer, donor,
+#. supporter
+#: configs/wp_translations_badge-configuration.php:24
+#: configs/wp_translations_badge-settings.php:24
+msgid ""
+"*translator||I'm Translating,developer||I'm Developing,donor||I'm a "
+"Donor,supporter||I'm a Supporter"
+msgstr "*tradutor||Eu estou traduzindo,developer||Eu estou desenvolvendo,donor||Eu sou um doador,supporter||Eu auxilio"
+
+#: configs/wp_translations_badge-configuration.php:27
+msgid "Alignment:"
+msgstr "Alinhamento:"
+
+#: configs/wp_translations_badge-configuration.php:28
+msgid "Alignment"
+msgstr "Alinhamento"
+
+#: configs/wp_translations_badge-settings.php:15
+msgid "Settings"
+msgstr "Configurações"
+
+#: includes/element-wp_translations_badge.php:13
+msgid "I am a Translator in WP-Translations Community"
+msgstr "Eu sou um Tradutor na Comunidade WP-Translations"
+
+#: includes/element-wp_translations_badge.php:18
+msgid "I Use WP-Translations Community for my i18n"
+msgstr "Eu uso a Comunidade WP-Translations para meu i18n"
+
+#: includes/element-wp_translations_badge.php:22
+msgid "I am a Proud Donor of WP-Translations Community"
+msgstr "Eu sou orgulhosamente o doador de uma Comunidade do WP-Translations"
+
+#: includes/element-wp_translations_badge.php:26
+msgid "I am a big Fan of WP-Translations Community"
+msgstr "Eu sou um grande Fã da Comunidade WP-Translations"
+
+#: includes/field-onoff.php:3
+msgid "On"
+msgstr "ligado"
+
+#: includes/field-onoff.php:3
+msgid "Off"
+msgstr "desligado"
+
+#: includes/widget-wp_translations_badge.php:22
+msgid "Display a WP-Translations Badge."
+msgstr "Mostrar o Badge do WP-Translate"
+
+#. Plugin URI of the plugin/theme
+msgid "http://github.com/wp-translations/wp-translations-badges"
+msgstr "http://github.com/wp-translations/wp-translations-badges"
+
+#. Description of the plugin/theme
+msgid "Display WP-Translations badges on your site with Shortcode or Widget"
+msgstr "Mostrar badges do WP-Translations no seu site através de Shortcode ou Widget"
+
+#. Author of the plugin/theme
+msgid "fxbenard | FxB"
+msgstr "fxbenard | FxB"
+
+#. Author URI of the plugin/theme
+msgid "http://wp-translations.org"
+msgstr "http://wp-translations.org"
+
+#. translators: Important only translate Uppercase Words
+#: configs/wp_translations_badge-configuration.php:31
+msgctxt "important only translate Uppercase Words"
+msgid "*none||None,left||Left,center||Center,right||Right"
+msgstr "*none||Nenhum,left||Esquerda,center||Centro,right||Direita"

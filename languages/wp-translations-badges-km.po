@@ -1,0 +1,155 @@
+# Copyright (C) 2014 WP-Translations Badges
+# This file is distributed under the same license as the WP-Translations Badges package.
+# Translators:
+# សុវិចិត្រ Sovichet ទេព Tep, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: WP-Translations Badges\n"
+"Report-Msgid-Bugs-To: https://wp-translations.org/\n"
+"POT-Creation-Date: 2014-05-12 15:29:16+00:00\n"
+"PO-Revision-Date: 2014-05-13 09:26+0000\n"
+"Last-Translator: សុវិចិត្រ Sovichet ទេព Tep\n"
+"Language-Team: Khmer (http://www.transifex.com/projects/p/wp-translations-badges/language/km/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: km\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-Keywordslist: __;_e;__ngettext:1,2;_n:1,2;__ngettext_  noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Sourcecharset: utf-8\n"
+"X-Textdomain-Support: yes\n"
+
+#: class-wp-translations-badges.php:179
+msgid "Visit the GitHub plugin page"
+msgstr "មើល​ទំព័រ​កម្មវិធី​បន្ថែម​នៅ​លើ GitHub"
+
+#: class-wp-translations-badges.php:180
+msgid "Join us on Transifex"
+msgstr "ចូលរួម​ជាមួយ​គ្នា​នៅ Transifex"
+
+#: class-wp-translations-badges.php:180
+msgid "Translate"
+msgstr "បក​ប្រែ"
+
+#: class-wp-translations-badges.php:344
+msgid "WP-Translations Badges Shortcode Builder"
+msgstr "ប្រដាប់​បង្កើត​កូដ​ខ្លី​នៃ​ស្លាក​សម្គាល់ WP-Translations"
+
+#: class-wp-translations-badges.php:345 class-wp-translations-badges.php:513
+msgid "Insert Shortcode"
+msgstr "បញ្ចូល​កូដ​ខ្លី"
+
+#: class-wp-translations-badges.php:345
+msgid "WP-T Badges"
+msgstr "ស្លាក​សម្គាល់ WP-T"
+
+#: class-wp-translations-badges.php:364
+msgid "Your content goes here"
+msgstr "មាតិកា​របស់​អ្នក​ស្ថិត​នៅ​ត្រង់​នេះ"
+
+#: class-wp-translations-badges.php:438
+#: includes/widget-wp_translations_badge.php:179
+msgid "Add Another"
+msgstr "បន្ថែម​មួយ​ទៀត"
+
+#: class-wp-translations-badges.php:452
+#: includes/widget-wp_translations_badge.php:149
+#: includes/widget-wp_translations_badge.php:185
+msgid "Remove"
+msgstr "ដកចេញ"
+
+#. Plugin Name of the plugin/theme
+msgid "WP-Translations Badges"
+msgstr "ស្លាក​សម្គាល់ WP-Translations"
+
+#: class-wp-translations-badges.php:503
+msgid "Shortcode Builder"
+msgstr "ប្រដាប់​បង្កើត​កូដ​ខ្លី"
+
+#: configs/wp_translations_badge-configuration.php:15
+msgid "Configuration"
+msgstr "ការ​កំណត់​សណ្ឋាន"
+
+#: configs/wp_translations_badge-configuration.php:20
+#: configs/wp_translations_badge-settings.php:20
+msgid "Badge Type:"
+msgstr "ប្រភេទ​ស្លាក​សម្គាល់៖"
+
+#: configs/wp_translations_badge-configuration.php:21
+#: configs/wp_translations_badge-settings.php:21
+msgid "Type of badge to display"
+msgstr "ប្រភេទ​ស្លាក​សម្គាល់​ដែល​ត្រូវ​បង្ហាញ"
+
+#. translators: Important don't translate translator, developer, donor,
+#. supporter
+#: configs/wp_translations_badge-configuration.php:24
+#: configs/wp_translations_badge-settings.php:24
+msgid ""
+"*translator||I'm Translating,developer||I'm Developing,donor||I'm a "
+"Donor,supporter||I'm a Supporter"
+msgstr "*translator||ខ្ញុំ​កំពុង​បកប្រែ,developer||ខ្ញុំ​កំពុង​អភិវឌ្ឍ,donor||ខ្ញុំ​គឺ​ជា​អ្នក​បរិច្ចាគ,supporter||ខ្ញុំ​គឺ​ជា​អ្នក​គាំទ្រ"
+
+#: configs/wp_translations_badge-configuration.php:27
+msgid "Alignment:"
+msgstr "ការ​តម្រឹម៖"
+
+#: configs/wp_translations_badge-configuration.php:28
+msgid "Alignment"
+msgstr "ការ​តម្រឹម៖"
+
+#: configs/wp_translations_badge-settings.php:15
+msgid "Settings"
+msgstr "ការ​កំណត់"
+
+#: includes/element-wp_translations_badge.php:13
+msgid "I am a Translator in WP-Translations Community"
+msgstr "ខ្ញុំ​គឺ​ជា​អ្នក​បកប្រែ​នៅ​ក្នុង​សហគមន៍ WP-Translations"
+
+#: includes/element-wp_translations_badge.php:18
+msgid "I Use WP-Translations Community for my i18n"
+msgstr "ខ្ញុំ​ប្រើ​សហគមន៍ WP-Translations សម្រាប់​អន្តរជាតូបនីយកម្ម​របស់​ខ្ញុំ"
+
+#: includes/element-wp_translations_badge.php:22
+msgid "I am a Proud Donor of WP-Translations Community"
+msgstr "ខ្ញុំ​គឺ​ជា​អ្នក​បរិច្ចាគ​នៃ​សហគមន៍ WP-Translations"
+
+#: includes/element-wp_translations_badge.php:26
+msgid "I am a big Fan of WP-Translations Community"
+msgstr "ខ្ញុំ​គឺ​ជា​អ្នក​គាំទ្រ​សហគមន៍ WP-Translations"
+
+#: includes/field-onoff.php:3
+msgid "On"
+msgstr "បើក"
+
+#: includes/field-onoff.php:3
+msgid "Off"
+msgstr "បិទ"
+
+#: includes/widget-wp_translations_badge.php:22
+msgid "Display a WP-Translations Badge."
+msgstr "បង្ហាញ​ស្លាក​សម្គាល់ WP-Translations ។"
+
+#. Plugin URI of the plugin/theme
+msgid "http://github.com/wp-translations/wp-translations-badges"
+msgstr "http://github.com/wp-translations/wp-translations-badges"
+
+#. Description of the plugin/theme
+msgid "Display WP-Translations badges on your site with Shortcode or Widget"
+msgstr "បង្ហាញ​ស្លាក​សម្គាល់ WP-Translations នៅ​លើ​វេបសាយ​របស់​អ្នក​ជាមួយ​កូដ​ខ្លី​ឬ​ក៏​ធាតុ​ក្រាហ្វិក"
+
+#. Author of the plugin/theme
+msgid "fxbenard | FxB"
+msgstr "fxbenard | FxB"
+
+#. Author URI of the plugin/theme
+msgid "http://wp-translations.org"
+msgstr "http://wp-translations.org"
+
+#. translators: Important only translate Uppercase Words
+#: configs/wp_translations_badge-configuration.php:31
+msgctxt "important only translate Uppercase Words"
+msgid "*none||None,left||Left,center||Center,right||Right"
+msgstr "*none||គ្មាន,left||ឆ្វេង,center||កណ្ដាល,right||ស្ដាំ"
