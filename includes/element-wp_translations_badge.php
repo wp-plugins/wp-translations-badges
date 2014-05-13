@@ -4,7 +4,7 @@
 	$alignment = $atts['alignment'];
 	if($alignment == 'left') $custom_style = 'float: left;';
 	if($alignment == 'right') $custom_style = 'float: right;';
-	if($alignment == 'center') $custom_style = 'margin: auto;';
+	if($alignment == 'center') $custom_style = 'text-align: center';
 ?>
 <div class="wp_t_badge" style="<?php echo $custom_style; ?>">
 	<?php
