@@ -4,7 +4,7 @@ Donate link: http://wp-translations.org/donation/
 Tags: wp-translations, badges, shortcode, widget, i18n
 Requires at least: 3.8
 Tested up to: 3.9.1
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2 or later
 
 Display WP-Translations badges on your website with Shortcode or Widget
@@ -30,8 +30,11 @@ You can contribute code to this plugin via [GitHub](https://github.com/WP-Transl
 * Français (French)
 * Português do Brasil (Brazilian Portuguese)
 * ភាសាខ្មែរ (Khmer)
+* Türkçe (Turkish)
+* Deutsch (German)
+* Italiano (Italian)
 
-Thanks to all WP-Translations Teams, you rock and make a difference...
+Thanks to all WP-Translations teams members, you rock and make a real difference...
 
 = Support =
 
@@ -55,6 +58,10 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 4. Badges Examples
 
 == Changelog ==
+
+= 1.0.4 (July 8, 2014) =
+The badges links now to Transifex username or project props @grappler
+Added Türkçe (Turkish), Deutsch (German), Italiano (Italian) languages props @wp-teams
 
 = 1.0.3 (May 13, 2014) =
 * Fixed badge centering issue props @danbpfr

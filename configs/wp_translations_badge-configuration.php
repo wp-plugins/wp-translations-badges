@@ -31,6 +31,20 @@ $group = array(
 			'default'	=> 	_x( '*none||None,left||Left,center||Center,right||Right', 'important only translate Uppercase Words', 'wp-translations-badges' ),
 			'inline'	=> 	true,
 		),
+		'username'	=>	array(
+			'label'		=> 	__('Transifex username:','wp-translations-badges'),
+			'caption'	=>	__('Transifex username','wp-translations-badges'),
+			'type'		=>	'username',
+			'default'	=> 	_x( '*TX username', 'wp-translations-badges' ),
+			'inline'	=> 	true,
+		),
+		'project_slug'	=>	array(
+			'label'		=> 	__('Project slug:','wp-translations-badges'),
+			'caption'	=>	__('Project slug','wp-translations-badges'),
+			'type'		=>	'username',
+			'default'	=> 	_x( '*Project slug', 'wp-translations-badges' ),
+			'inline'	=> 	true,
+		),
 	),
 	'styles'	=> array(
 		'toggles.css',
@@ -40,4 +54,3 @@ $group = array(
 	),
 	'multiple'	=> false,
 );
-

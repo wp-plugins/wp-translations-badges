@@ -9,13 +9,15 @@
 <div class="wp_t_badge" style="<?php echo $custom_style; ?>">
 	<?php
 		if($badge_type == 'translator'):
+			$username = $atts['username'];
 	?>
-     <a href="http://wp-translations.org/"><img src="<?php echo plugins_url( 'assets/images/wp_t_badge_translator.png', dirname(__FILE__) );?>" alt="<?php _e( 'I am a Translator in WP-Translations Community', 'wp-translations-badges' );?>" title="<?php _e( 'I am a Translator in WP-Translations Community', 'wp-translations-badges' );?>" /></a>
+     <a href="http://transifex.com/accounts/profile/<?php echo $username; ?>"><img src="<?php echo plugins_url( 'assets/images/wp_t_badge_translator.png', dirname(__FILE__) );?>" alt="<?php _e( 'I am a Translator in WP-Translations Community', 'wp-translations-badges' );?>" title="<?php _e( 'I am a Translator in WP-Translations Community', 'wp-translations-badges' );?>" /></a>
 
 	<?php
 		elseif($badge_type == 'developer'):
+			$project_slug = $atts['project_slug'];
 	?>
-    <a href="http://wp-translations.org/"><img src="<?php echo plugins_url( 'assets/images/wp_t_badge_developer.png', dirname(__FILE__) );?>" alt="<?php _e( 'I Use WP-Translations Community for my i18n', 'wp-translations-badges' );?>" title="<?php _e( 'I Use WP-Translations Community for my i18n', 'wp-translations-badges' );?>" width="150" height="134" /></a>
+    <a href="http://transifex.com/projects/p/<?php echo $project_slug; ?>"><img src="<?php echo plugins_url( 'assets/images/wp_t_badge_developer.png', dirname(__FILE__) );?>" alt="<?php _e( 'I Use WP-Translations Community for my i18n', 'wp-translations-badges' );?>" title="<?php _e( 'I Use WP-Translations Community for my i18n', 'wp-translations-badges' );?>" width="150" height="134" /></a>
 	<?php
 		elseif($badge_type == 'donor'):
 	?>

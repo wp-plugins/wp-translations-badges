@@ -10,7 +10,7 @@
  * Plugin Name: WP-Translations Badges
  * Plugin URI:  http://github.com/wp-translations/wp-translations-badges
  * Description: Display WP-Translations badges on your site with Shortcode or Widget
- * Version:     1.0.3
+ * Version:     1.0.4
  * Author:      fxbenard | FxB
  * Author URI:  http://wp-translations.org
  * Text Domain: wp-translations-badges
