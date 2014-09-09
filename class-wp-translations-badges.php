@@ -19,7 +19,7 @@ class Wp_Translations_Badges {
 	/**
 	 * @var     string
 	 */
-	const VERSION = '1.0.5';
+	const VERSION = '1.0.6';
 	/**
 	 * @var      string
 	 */
