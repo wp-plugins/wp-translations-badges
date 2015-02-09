@@ -174,7 +174,7 @@ class Wp_Translations_Badges {
 	 * @param   string  $status       Plugin status.
 	 * @return  array                 Plugin meta array.
 	 */
-	function add_wptb_row_meta( $plugin_meta, $plugin_file, $plugin_data, $status ) {
+	public static function add_wptb_row_meta( $plugin_meta, $plugin_file, $plugin_data, $status ) {
 		if ( 'wp-translations-badges/plugincore.php' == $plugin_file ) {
 			$plugin_meta[] = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', 'http://github.com/WP-Translations/wp-translations-badges/', __( 'Visit the GitHub plugin page', 'wp-translations-badges' ) , 'GitHub' );
 			$plugin_meta[] = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', 'https://www.transifex.com/projects/p/wp-translations-badges/', __( 'Join us on Transifex', 'wp-translations-badges' ), __( 'Translate', 'wp-translations-badges' ) );

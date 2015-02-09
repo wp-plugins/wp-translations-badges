@@ -3,8 +3,8 @@ Contributors: fxbenard, tripflex
 Donate link: http://wp-translations.org/donation/
 Tags: wp-translations, badges, shortcode, widget, i18n
 Requires at least: 3.8
-Tested up to: 4.0
-Stable tag: 1.0.6
+Tested up to: 4.1
+Stable tag: 1.0.7
 License: GPLv2 or later
 
 Display WP-Translations badges on your website with Shortcode or Widget
@@ -62,6 +62,9 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 4. Badges Examples
 
 == Changelog ==
+
+=1.0.7 (Jan 27, 2015)
+Fix bug function name
 
 = 1.0.6 (Sept 09, 2014) =
 Ready for WP 4.0
