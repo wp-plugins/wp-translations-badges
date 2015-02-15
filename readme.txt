@@ -63,8 +63,9 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 == Changelog ==
 
-=1.0.7 (Jan 27, 2015)
-Fix bug function name
+= 1.0.7 (Jan 20, 2015) =
+Fixed bad function call
+Updated translations
 
 = 1.0.6 (Sept 09, 2014) =
 Ready for WP 4.0

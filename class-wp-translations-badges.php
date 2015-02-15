@@ -11,36 +11,51 @@
 
 /**
  * Plugin class.
+ *
  * @package Wp_Translations_Badges
  * @author  Myles McNamara <myles@smyl.es>, fxbenard <fxb@wp-translations.org>
  */
 class Wp_Translations_Badges {
 
 	/**
+	 *
+	 *
 	 * @var     string
 	 */
-	const VERSION = '1.0.6';
+	const VERSION = '1.0.7';
 	/**
+	 *
+	 *
 	 * @var      string
 	 */
 	protected $plugin_slug = 'wp-translations-badges';
 	/**
+	 *
+	 *
 	 * @var      object
 	 */
 	protected static $instance = null;
 	/**
+	 *
+	 *
 	 * @var      array
 	 */
 	protected $element_instances = array();
 	/**
+	 *
+	 *
 	 * @var      array
 	 */
 	protected $element_css_once = array();
 	/**
+	 *
+	 *
 	 * @var      array
 	 */
 	protected $elements = array();
 	/**
+	 *
+	 *
 	 * @var      string
 	 */
 	protected $plugin_screen_hook_suffix = null;
@@ -59,24 +74,24 @@ class Wp_Translations_Badges {
 		// Load admin style sheet and JavaScript.
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_stylescripts' ) );
 
-		add_action('wp_footer', array( $this, 'footer_scripts' ) );
+		add_action( 'wp_footer', array( $this, 'footer_scripts' ) );
 
 		// Detect element before rendering the page so that we can enque scripts and styles needed
-		if(!is_admin()){
+		if ( !is_admin() ) {
 			add_action( 'wp', array( $this, 'detect_elements' ) );
 		}
 
-		if(is_admin()){
-			add_action( 'media_buttons', array($this, 'shortcode_insert_button' ), 11 );
+		if ( is_admin() ) {
+			add_action( 'media_buttons', array( $this, 'shortcode_insert_button' ), 11 );
 			add_action( 'admin_footer', array( $this, 'shortcode_modal_template' ) );
 		}
-// Add shortcodes
-		add_shortcode('wp_translations_badge', array($this, 'render_element'));
-		$this->elements = array_merge($this->elements, array(
-			'shortcodes'			=>	array(
-				'wp_translations_badge' 			=> '1',
-			)
-		));
+		// Add shortcodes
+		add_shortcode( 'wp_translations_badge', array( $this, 'render_element' ) );
+		$this->elements = array_merge( $this->elements, array(
+				'shortcodes'   => array(
+					'wp_translations_badge'    => '1',
+				)
+			) );
 
 	}
 
@@ -100,7 +115,7 @@ class Wp_Translations_Badges {
 	 * Fired when the plugin is activated.
 	 *
 	 *
-	 * @param    boolean    $network_wide    True if WPMU superadmin uses "Network Activate" action, false if WPMU is disabled or plugin is activated on an individual blog.
+	 * @param boolean $network_wide True if WPMU superadmin uses "Network Activate" action, false if WPMU is disabled or plugin is activated on an individual blog.
 	 */
 	public static function activate( $network_wide ) {
 		if ( function_exists( 'is_multisite' ) && is_multisite() ) {
@@ -125,7 +140,7 @@ class Wp_Translations_Badges {
 	 * Fired when the plugin is deactivated.
 	 *
 	 *
-	 * @param    boolean    $network_wide    True if WPMU superadmin uses "Network Deactivate" action, false if WPMU is disabled or plugin is deactivated on an individual blog.
+	 * @param boolean $network_wide True if WPMU superadmin uses "Network Deactivate" action, false if WPMU is disabled or plugin is deactivated on an individual blog.
 	 */
 	public static function deactivate( $network_wide ) {
 		if ( function_exists( 'is_multisite' ) && is_multisite() ) {
@@ -150,7 +165,7 @@ class Wp_Translations_Badges {
 	 * Fired when a new site is activated with a WPMU environment.
 	 *
 	 *
-	 * @param	int	$blog_id ID of the new blog.
+	 * @param int     $blog_id ID of the new blog.
 	 */
 	public function activate_new_site( $blog_id ) {
 		if ( 1 !== did_action( 'wpmu_new_blog' ) )
@@ -169,9 +184,9 @@ class Wp_Translations_Badges {
 	 * Replace references to 'my-plugin' to reflect your plugin folder and file name.
 	 * Update the GitHub Repo and Translation links.
 	 *
-	 * @param   array   $plugin_meta  Plugin meta display array.
-	 * @param   string  $plugin_file  Plugin reference.
-	 * @param   string  $status       Plugin status.
+	 * @param array   $plugin_meta Plugin meta display array.
+	 * @param string  $plugin_file Plugin reference.
+	 * @param string  $status      Plugin status.
 	 * @return  array                 Plugin meta array.
 	 */
 	public static function add_wptb_row_meta( $plugin_meta, $plugin_file, $plugin_data, $status ) {
@@ -189,7 +204,7 @@ class Wp_Translations_Badges {
 	 * - not deleted
 	 *
 	 *
-	 * @return	array|false	The blog ids, false if no matches.
+	 * @return array|false The blog ids, false if no matches.
 	 */
 	private static function get_blog_ids() {
 		global $wpdb;
@@ -241,7 +256,7 @@ class Wp_Translations_Badges {
 		$screen = get_current_screen();
 
 
-		if($screen->base == 'post'){
+		if ( $screen->base == 'post' ) {
 			wp_enqueue_script( $this->plugin_slug . '-shortcode-modal-script', self::get_url( 'assets/js/shortcode-modal.js', __FILE__ ), array( 'jquery' ), self::VERSION );
 			wp_enqueue_script( $this->plugin_slug . '-panel-script', self::get_url( 'assets/js/panel.js', __FILE__ ), array( 'jquery' ), self::VERSION );
 			wp_enqueue_style( $this->plugin_slug . '-panel-styles', self::get_url( 'assets/css/panel.css', __FILE__ ), array(), self::VERSION );
@@ -257,50 +272,50 @@ class Wp_Translations_Badges {
 		if ( in_array( $screen->id, $this->plugin_screen_hook_suffix ) ) {
 			$slug = array_search( $screen->id, $this->plugin_screen_hook_suffix );
 			//$configfiles = glob( self::get_path( __FILE__ ) .'configs/'.$slug.'-*.php' );
-			if(file_exists(self::get_path( __FILE__ ) .'configs/fieldgroups-'.$slug.'.php')){
+			if ( file_exists( self::get_path( __FILE__ ) .'configs/fieldgroups-'.$slug.'.php' ) ) {
 				include self::get_path( __FILE__ ) .'configs/fieldgroups-'.$slug.'.php';
-			}else{
+			}else {
 				return;
 			}
 
-			if( !empty( $configfiles ) ) {
+			if ( !empty( $configfiles ) ) {
 				// Always good to have.
 				wp_enqueue_media();
-				wp_enqueue_script('media-upload');
+				wp_enqueue_script( 'media-upload' );
 
-				foreach ($configfiles as $key=>$fieldfile) {
+				foreach ( $configfiles as $key=>$fieldfile ) {
 					include $fieldfile;
-					if(!empty($group['scripts'])){
-						foreach($group['scripts'] as $script){
-							if( is_array( $script ) ){
-								foreach($script as $remote=>$location){
+					if ( !empty( $group['scripts'] ) ) {
+						foreach ( $group['scripts'] as $script ) {
+							if ( is_array( $script ) ) {
+								foreach ( $script as $remote=>$location ) {
 									$infoot = false;
-									if($location == 'footer'){
+									if ( $location == 'footer' ) {
 										$infoot = true;
 									}
-									if( false !== strpos($remote, '.')){
-										wp_enqueue_script( $this->plugin_slug . '-' . strtok(basename($remote), '.'), $remote , array('jquery'), false, $infoot );
-									}else{
+									if ( false !== strpos( $remote, '.' ) ) {
+										wp_enqueue_script( $this->plugin_slug . '-' . strtok( basename( $remote ), '.' ), $remote , array( 'jquery' ), false, $infoot );
+									}else {
 										wp_enqueue_script( $remote, false , array(), false, $infoot );
 									}
 								}
-							}else{
-								if( false !== strpos($script, '.')){
-									wp_enqueue_script( $this->plugin_slug . '-' . strtok($script, '.'), self::get_url( 'assets/js/'.$script , __FILE__ ) , array('jquery'), false, true );
-								}else{
+							}else {
+								if ( false !== strpos( $script, '.' ) ) {
+									wp_enqueue_script( $this->plugin_slug . '-' . strtok( $script, '.' ), self::get_url( 'assets/js/'.$script , __FILE__ ) , array( 'jquery' ), false, true );
+								}else {
 									wp_enqueue_script( $script );
 								}
 							}
 						}
 					}
-					if(!empty($group['styles'])){
-						foreach($group['styles'] as $style){
-							if( is_array( $style ) ){
-								foreach($style as $remote){
-									wp_enqueue_style( $this->plugin_slug . '-' . strtok(basename($remote), '.'), $remote );
+					if ( !empty( $group['styles'] ) ) {
+						foreach ( $group['styles'] as $style ) {
+							if ( is_array( $style ) ) {
+								foreach ( $style as $remote ) {
+									wp_enqueue_style( $this->plugin_slug . '-' . strtok( basename( $remote ), '.' ), $remote );
 								}
-							}else{
-								wp_enqueue_style( $this->plugin_slug . '-' . strtok($style, '.'), self::get_url( 'assets/css/'.$style , __FILE__ ) );
+							}else {
+								wp_enqueue_style( $this->plugin_slug . '-' . strtok( $style, '.' ), self::get_url( 'assets/css/'.$style , __FILE__ ) );
 							}
 						}
 					}
@@ -319,12 +334,12 @@ class Wp_Translations_Badges {
 	 * Process a field value
 	 *
 	 */
-	public function process_value($type, $value){
+	public function process_value( $type, $value ) {
 
-		switch ($type){
-			default:
-				return $value;
-				break;
+		switch ( $type ) {
+		default:
+			return $value;
+			break;
 
 		}
 
@@ -338,11 +353,11 @@ class Wp_Translations_Badges {
 	 *
 	 *
 	 */
-	function shortcode_insert_button(){
+	function shortcode_insert_button() {
 		global $post;
-		if(!empty($post)){
-			echo "<a id=\"wp-translations-badges-shortcodeinsert\" title=\"".__('WP-Translations Badges Shortcode Builder','wp-translations-badges')."\" style=\"padding-left: 0.4em;\" class=\"button wp-translations-badges-editor-button\" href=\"#inst\">\n";
-			echo "	<img src=\"". self::get_url( __FILE__ ) . "assets/images/icon.png\" alt=\"".__("Insert Shortcode","wp-translations-badges")."\" style=\"padding:0 2px 1px;\" /> ".__('WP-T Badges', 'wp-translations-badges')."\n";
+		if ( !empty( $post ) ) {
+			echo "<a id=\"wp-translations-badges-shortcodeinsert\" title=\"".__( 'WP-Translations Badges Shortcode Builder', 'wp-translations-badges' )."\" style=\"padding-left: 0.4em;\" class=\"button wp-translations-badges-editor-button\" href=\"#inst\">\n";
+			echo "	<img src=\"". self::get_url( __FILE__ ) . "assets/images/icon.png\" alt=\"".__( "Insert Shortcode", "wp-translations-badges" )."\" style=\"padding:0 2px 1px;\" /> ".__( 'WP-T Badges', 'wp-translations-badges' )."\n";
 			echo "</a>\n";
 		}
 	}
@@ -353,36 +368,36 @@ class Wp_Translations_Badges {
 	 *
 	 * @return    null
 	 */
-	function render_shortcode_panel($shortcode, $type = 1, $template = false){
+	function render_shortcode_panel( $shortcode, $type = 1, $template = false ) {
 
 
-		if(!empty($template)){
+		if ( !empty( $template ) ) {
 			echo "<script type=\"text/html\" id=\"wp-translations-badges-".$shortcode."-config-tmpl\">\r\n";
 		}
 		echo "<input id=\"wp-translations-badges-shortcodekey\" class=\"configexclude\" type=\"hidden\" value=\"".$shortcode."\">\r\n";
 		echo "<input id=\"wp-translations-badges-shortcodetype\" class=\"configexclude\" type=\"hidden\" value=\"".$type."\">\r\n";
-		echo "<input id=\"wp-translations-badges-default-content\" class=\"configexclude\" type=\"hidden\" value=\" ".__('Your content goes here','wp-translations-badges')." \">\r\n";
+		echo "<input id=\"wp-translations-badges-default-content\" class=\"configexclude\" type=\"hidden\" value=\" ".__( 'Your content goes here', 'wp-translations-badges' )." \">\r\n";
 
-		if(!empty($this->elements['posttypes'][$shortcode])){
-			$posts = get_posts(array('post_type' => $shortcode));
+		if ( !empty( $this->elements['posttypes'][$shortcode] ) ) {
+			$posts = get_posts( array( 'post_type' => $shortcode ) );
 
-			if(empty($posts)){
+			if ( empty( $posts ) ) {
 				echo 'No items available';
-			}else{
-				foreach($posts as $post){
+			}else {
+				foreach ( $posts as $post ) {
 					echo '<div class="posttype-item"><label><input type="radio" value="'.$post->ID.'" name="id"> '.$post->post_title.'</label></div>';
 				}
 			}
-			if(!empty($template)){
+			if ( !empty( $template ) ) {
 				echo "</script>\r\n";
 			}
 			return;
 		}
 
-		if(file_exists(self::get_path( __FILE__ ) .'configs/fieldgroups-'.$shortcode.'.php')){
+		if ( file_exists( self::get_path( __FILE__ ) .'configs/fieldgroups-'.$shortcode.'.php' ) ) {
 			include self::get_path( __FILE__ ) .'configs/fieldgroups-'.$shortcode.'.php';
-		}else{
-			if(!empty($template)){
+		}else {
+			if ( !empty( $template ) ) {
 				echo "</script>\r\n";
 			}
 			return;
@@ -391,89 +406,89 @@ class Wp_Translations_Badges {
 		$groups = array();
 		echo "<div class=\"wp-translations-badges-shortcode-config-nav\">\r\n";
 		echo "	<ul>\r\n";
-		foreach ($configfiles as $key=>$fieldfile) {
+		foreach ( $configfiles as $key=>$fieldfile ) {
 			include $fieldfile;
 			$groups[] = $group;
-				echo "		<li class=\"" . ( $key === 0 ? "current" : "" ) . "\">\r\n";
-				echo "			<a title=\"".$group['label']."\" href=\"#row".$group['master']."\"><strong>".$group['label']."</strong></a>\r\n";
-				echo "		</li>\r\n";
+			echo "		<li class=\"" . ( $key === 0 ? "current" : "" ) . "\">\r\n";
+			echo "			<a title=\"".$group['label']."\" href=\"#row".$group['master']."\"><strong>".$group['label']."</strong></a>\r\n";
+			echo "		</li>\r\n";
 		}
 		echo "	</ul>\r\n";
 		echo "</div>\r\n";
 
-		echo "<div class=\"wp-translations-badges-shortcode-config-content " . ( count($configfiles) > 1 ? "" : "full" ) . "\">\r\n";
-			foreach($groups as $key=>$group){
-				echo "<div class=\"group\" " . ( $key === 0 ? "" : "style=\"display:none;\"" ) . " id=\"row".$group['master']."\">\r\n";
-				echo "<h3 class=\"wp-translations-badges-config-header\">".$group['label']."</h3>\r\n";
-				echo "<table class=\"form-table rowGroup groupitems\" id=\"groupitems\" ref=\"items\">\r\n";
-				echo "	<tbody>\r\n";
-					foreach($group['fields'] as $field=>$settings){
-						//dump($settings);
-						$id = 'field_'.$field;
-						$groupid = $group['id'];
-						$name = $field;
-						$single = true;
-						if(!empty($group['multiple'])){
-							$name = $field.'[]';
-						}
-						$label = $settings['label'];
-						$caption = $settings['caption'];
-						$value = $settings['default'];
-						echo "<tr valign=\"top\">\r\n";
-							echo "<th scope=\"row\">\r\n";
-								echo "<label for=\"".$id."\">".$label."</label>\r\n";
-							echo "</th>\r\n";
-							echo "<td>\r\n";
-							include self::get_path( __FILE__ ) . 'includes/field-'.$settings['type'].'.php';
-							if(!empty($caption)){
-								echo "<p class=\"description\">".$caption."</p>\r\n";
-							}
-							echo "</td>\r\n";
-						echo "</tr>\r\n";
-					}
-				echo "	</tbody>\r\n";
-				echo "</table>\r\n";
-
-				if(!empty($group['multiple'])){
-					echo "<div class=\"toolrow\"><button class=\"button wp-translations-badges-add-group-row\" type=\"button\" data-rowtemplate=\"group-".$group['id']."-tmpl\">".__('Add Another','wp-translations-badges')."</button></div>\r\n";
+		echo "<div class=\"wp-translations-badges-shortcode-config-content " . ( count( $configfiles ) > 1 ? "" : "full" ) . "\">\r\n";
+		foreach ( $groups as $key=>$group ) {
+			echo "<div class=\"group\" " . ( $key === 0 ? "" : "style=\"display:none;\"" ) . " id=\"row".$group['master']."\">\r\n";
+			echo "<h3 class=\"wp-translations-badges-config-header\">".$group['label']."</h3>\r\n";
+			echo "<table class=\"form-table rowGroup groupitems\" id=\"groupitems\" ref=\"items\">\r\n";
+			echo "	<tbody>\r\n";
+			foreach ( $group['fields'] as $field=>$settings ) {
+				//dump($settings);
+				$id = 'field_'.$field;
+				$groupid = $group['id'];
+				$name = $field;
+				$single = true;
+				if ( !empty( $group['multiple'] ) ) {
+					$name = $field.'[]';
 				}
-				echo "</div>\r\n";
+				$label = $settings['label'];
+				$caption = $settings['caption'];
+				$value = $settings['default'];
+				echo "<tr valign=\"top\">\r\n";
+				echo "<th scope=\"row\">\r\n";
+				echo "<label for=\"".$id."\">".$label."</label>\r\n";
+				echo "</th>\r\n";
+				echo "<td>\r\n";
+				include self::get_path( __FILE__ ) . 'includes/field-'.$settings['type'].'.php';
+				if ( !empty( $caption ) ) {
+					echo "<p class=\"description\">".$caption."</p>\r\n";
+				}
+				echo "</td>\r\n";
+				echo "</tr>\r\n";
 			}
+			echo "	</tbody>\r\n";
+			echo "</table>\r\n";
+
+			if ( !empty( $group['multiple'] ) ) {
+				echo "<div class=\"toolrow\"><button class=\"button wp-translations-badges-add-group-row\" type=\"button\" data-rowtemplate=\"group-".$group['id']."-tmpl\">".__( 'Add Another', 'wp-translations-badges' )."</button></div>\r\n";
+			}
+			echo "</div>\r\n";
+		}
 		echo "</div>\r\n";
 
-		if(!empty($template)){
+		if ( !empty( $template ) ) {
 			echo "</script>\r\n";
 		}
 		// go get the loop templates
-		foreach($groups as $group){
+		foreach ( $groups as $group ) {
 			// Place html template for repeated fields.
-			if(!empty($group['multiple'])){
+			if ( !empty( $group['multiple'] ) ) {
 				echo "<script type=\"text/html\" id=\"group-".$group['id']."-tmpl\">\r\n";
-				echo '  <div class="button button-primary right wp-translations-badges-removeRow" style="margin:5px 5px 0;">'.__('Remove','wp-translations-badges').'</div>';
+				echo '  <div class="button button-primary right wp-translations-badges-removeRow" style="margin:5px 5px 0;">'.__( 'Remove', 'wp-translations-badges' ).'</div>';
 				echo "	<table class=\"form-table rowGroup groupitems\" id=\"groupitems\" ref=\"items\">\r\n";
 				echo "		<tbody>\r\n";
-					foreach($group['fields'] as $field=>$settings){
-						//dump($settings);
-						$id = 'field_{{id}}';
-						$groupid = $group['id'];
-						$name = $field.'[__count__]';
-						$single = true;
-						$label = $settings['label'];
-						$caption = $settings['caption'];
-						$value = $settings['default'];
-						echo "<tr valign=\"top\">\r\n";
-							echo "<th scope=\"row\">\r\n";
-								echo "<label for=\"".$id."\">".$label."</label>\r\n";
-							echo "</th>\r\n";
-							echo "<td>\r\n";
-							include self::get_path( __FILE__ ) . 'includes/field-'.$settings['type'].'.php';
-							if(!empty($caption)){
-								echo "<p class=\"description\">".$caption."</p>\r\n";
-							}
-							echo "</td>\r\n";
-						echo "</tr>\r\n";
-
+				foreach ( $group['fields'] as $field=>$settings ) {
+					//dump($settings);
+					$id = 'field_{{id}}';
+					$groupid = $group['id'];
+					$name = $field.'[__count__]';
+					$single = true;
+					$label = $settings['label'];
+					$caption = $settings['caption'];
+					$value = $settings['default'];
+					echo "<tr valign=\"top\">\r\n";
+					echo "<th scope=\"row\">\r\n";
+					echo "<label for=\"".$id."\">".$label."</label>\r\n";
+					echo "</th>\r\n";
+					echo "<td>\r\n";
+					include self::get_path( __FILE__ ) . 'includes/field-'.$settings['type'].'.php';
+					if ( !empty( $caption ) ) {
+						echo "<p class=\"description\">".$caption."</p>\r\n";
 					}
+					echo "</td>\r\n";
+					echo "</tr>\r\n";
+
+				}
 				echo "		</tbody>\r\n";
 				echo "	</table>\r\n";
 				echo "</script>";
@@ -486,10 +501,10 @@ class Wp_Translations_Badges {
 	 *
 	 *
 	 */
-	function shortcode_modal_template(){
+	function shortcode_modal_template() {
 		$screen = get_current_screen();
 
-		if($screen->base != 'post'){return;}
+		if ( $screen->base != 'post' ) {return;}
 
 		echo "<script type=\"text/html\" id=\"wp-translations-badges-shortcode-panel-tmpl\">\r\n";
 		echo "	<div tabindex=\"0\" id=\"wp-translations-badges-shortcode-panel\" class=\"hidden\">\r\n";
@@ -500,25 +515,25 @@ class Wp_Translations_Badges {
 		echo "					<a title=\"Close\" href=\"#\" class=\"media-modal-close\">\r\n";
 		echo "						<span class=\"media-modal-icon\"></span>\r\n";
 		echo "					</a>\r\n";
-		echo "					<h2 style=\"background: url(".self::get_url( '/assets/images/icon.png', __FILE__ ) . ") no-repeat scroll 0px 2px transparent; padding-left: 20px;\">".__('WP-Translations Badges','wp-translations-badges')." <small>".__("Shortcode Builder","wp-translations-badges")."</small></h2>\r\n";
+		echo "					<h2 style=\"background: url(".self::get_url( '/assets/images/icon.png', __FILE__ ) . ") no-repeat scroll 0px 2px transparent; padding-left: 20px;\">".__( 'WP-Translations Badges', 'wp-translations-badges' )." <small>".__( "Shortcode Builder", "wp-translations-badges" )."</small></h2>\r\n";
 		echo "				</div>\r\n";
 		echo "				<div class=\"wp-translations-badges-modal-body\">\r\n";
 		echo "					<span id=\"wp-translations-badges-categories\">\r\n";
-		echo "						<div class=\"wp-translations-badges-shortcode-name\">".__('WP-Translations Badges','wp-translations-badges')."</div><span class=\"wp-translations-badges-autoload\" data-shortcode=\"wp_translations_badge\"></span>\r\n";
+		echo "						<div class=\"wp-translations-badges-shortcode-name\">".__( 'WP-Translations Badges', 'wp-translations-badges' )."</div><span class=\"wp-translations-badges-autoload\" data-shortcode=\"wp_translations_badge\"></span>\r\n";
 		echo "					</span>\r\n";
 		echo "					<div id=\"wp-translations-badges-shortcode-config\" class=\"wp-translations-badges-shortcode-config\">\r\n";
 		echo "					</div>\r\n";
 		echo "				</div>\r\n";
 		echo "				<div class=\"wp-translations-badges-modal-footer\">\r\n";
-		echo "					<button class=\"button button-primary button-large\" id=\"wp-translations-badges-insert-shortcode\">".__("Insert Shortcode","wp-translations-badges")."</button>\r\n";
+		echo "					<button class=\"button button-primary button-large\" id=\"wp-translations-badges-insert-shortcode\">".__( "Insert Shortcode", "wp-translations-badges" )."</button>\r\n";
 		echo "				</div>\r\n";
 		echo "			</div>\r\n";
 		echo "		</div>\r\n";
 		echo "	</div>\r\n";
 		echo "</script>\r\n";
 
-		foreach($this->elements['shortcodes'] as $shortcode=>$type){
-			$this->render_shortcode_panel($shortcode, $type, true);
+		foreach ( $this->elements['shortcodes'] as $shortcode=>$type ) {
+			$this->render_shortcode_panel( $shortcode, $type, true );
 		}
 
 	}
@@ -526,56 +541,56 @@ class Wp_Translations_Badges {
 	/**
 	 * Gets a list of shorcodes used within the content provided
 	 *
-	 * @return 	array
+	 * @return  array
 	 */
-	function get_regex(){
+	function get_regex() {
 
-	// this makes it easier to cycle through and get the used codes for inclusion
-	$validcodes = join( '|', array_map('preg_quote', array_keys($this->elements['shortcodes'])) );
-	return
-			  '\\['                              // Opening bracket
-			. '(\\[?)'                           // 1: Optional second opening bracket for escaping shortcodes: [[tag]]
-			. "($validcodes)"                    // 2: selected codes only
-			. '\\b'                              // Word boundary
-			. '('                                // 3: Unroll the loop: Inside the opening shortcode tag
-			.     '[^\\]\\/]*'                   // Not a closing bracket or forward slash
-			.     '(?:'
+		// this makes it easier to cycle through and get the used codes for inclusion
+		$validcodes = join( '|', array_map( 'preg_quote', array_keys( $this->elements['shortcodes'] ) ) );
+		return
+		'\\['                              // Opening bracket
+		. '(\\[?)'                           // 1: Optional second opening bracket for escaping shortcodes: [[tag]]
+		. "($validcodes)"                    // 2: selected codes only
+		. '\\b'                              // Word boundary
+		. '('                                // 3: Unroll the loop: Inside the opening shortcode tag
+		.     '[^\\]\\/]*'                   // Not a closing bracket or forward slash
+		.     '(?:'
 			.         '\\/(?!\\])'               // A forward slash not followed by a closing bracket
-			.         '[^\\]\\/]*'               // Not a closing bracket or forward slash
-			.     ')*?'
+		.         '[^\\]\\/]*'               // Not a closing bracket or forward slash
+		.     ')*?'
 			. ')'
 			. '(?:'
 			.     '(\\/)'                        // 4: Self closing tag ...
-			.     '\\]'                          // ... and closing bracket
-			. '|'
+		.     '\\]'                          // ... and closing bracket
+		. '|'
 			.     '\\]'                          // Closing bracket
-			.     '(?:'
+		.     '(?:'
 			.         '('                        // 5: Unroll the loop: Optionally, anything between the opening and closing shortcode tags
-			.             '[^\\[]*+'             // Not an opening bracket
-			.             '(?:'
+		.             '[^\\[]*+'             // Not an opening bracket
+		.             '(?:'
 			.                 '\\[(?!\\/\\2\\])' // An opening bracket not followed by the closing shortcode tag
-			.                 '[^\\[]*+'         // Not an opening bracket
-			.             ')*+'
+		.                 '[^\\[]*+'         // Not an opening bracket
+		.             ')*+'
 			.         ')'
 			.         '\\[\\/\\2\\]'             // Closing shortcode tag
-			.     ')?'
+		.     ')?'
 			. ')'
 			. '(\\]?)';                          // 6: Optional second closing brocket for escaping shortcodes: [[tag]]
 
 	}
 
-	function get_used_shortcodes($content, $return = array(), $internal = true, $preview = false){
+	function get_used_shortcodes( $content, $return = array(), $internal = true, $preview = false ) {
 
 		$regex = self::get_regex();
 
-		preg_match_all('/' . $regex . '/s', $content, $found);
+		preg_match_all( '/' . $regex . '/s', $content, $found );
 
-		foreach($found[5] as $innerContent){
-			if(!empty($innerContent)){
-			   $new = self::get_used_shortcodes($innerContent, $found, $internal);
-				if(!empty($new)){
-					foreach($new as $key=>$val){
-						$found[$key] = array_merge($found[$key], $val);
+		foreach ( $found[5] as $innerContent ) {
+			if ( !empty( $innerContent ) ) {
+				$new = self::get_used_shortcodes( $innerContent, $found, $internal );
+				if ( !empty( $new ) ) {
+					foreach ( $new as $key=>$val ) {
+						$found[$key] = array_merge( $found[$key], $val );
 					}
 				}
 			}
@@ -591,30 +606,30 @@ class Wp_Translations_Badges {
 	 *
 	 * @return    null
 	 */
-	public function get_post_meta($id, $key = null, $single = false){
+	public function get_post_meta( $id, $key = null, $single = false ) {
 
-		if(!empty($key)){
+		if ( !empty( $key ) ) {
 
 			//$configfiles = glob(self::get_path( __FILE__ ) .'configs/*.php');
-			if(file_exists(self::get_path( __FILE__ ) .'configs/fieldgroups-wp_translations_badges.php')){
+			if ( file_exists( self::get_path( __FILE__ ) .'configs/fieldgroups-wp_translations_badges.php' ) ) {
 				include self::get_path( __FILE__ ) .'configs/fieldgroups-wp_translations_badges.php';
-			}else{
+			}else {
 				return;
 			}
 
 			$field_type = 'text';
-			foreach( $configfiles as $config=>$file ){
+			foreach ( $configfiles as $config=>$file ) {
 				include $file;
-				if(isset($group['fields'][$key]['type'])){
+				if ( isset( $group['fields'][$key]['type'] ) ) {
 					$field_type = $group['fields'][$key]['type'];
 					break;
 				}
 			}
 			$key = 'wp_translations_badges_' . $key;
 		}
-		if( false === $single){
+		if ( false === $single ) {
 			$metas = get_post_meta( $id, $key );
-			foreach ($metas as $key => &$value) {
+			foreach ( $metas as $key => &$value ) {
 				$value = $this->process_value( $field_type, $value );
 			}
 			return $metas;
@@ -629,34 +644,34 @@ class Wp_Translations_Badges {
 	 *
 	 *
 	 */
-	function save_post_metaboxes($pid, $post){
+	function save_post_metaboxes( $pid, $post ) {
 
-		if(!isset($_POST['wp_translations_badges_metabox']) || !isset($_POST['wp_translations_badges_metabox_prefix'])){return;}
+		if ( !isset( $_POST['wp_translations_badges_metabox'] ) || !isset( $_POST['wp_translations_badges_metabox_prefix'] ) ) {return;}
 
 
-		if(!wp_verify_nonce($_POST['wp_translations_badges_metabox'], plugin_basename(__FILE__))){
+		if ( !wp_verify_nonce( $_POST['wp_translations_badges_metabox'], plugin_basename( __FILE__ ) ) ) {
 			return $post->ID;
 		}
-		if(!current_user_can( 'edit_post', $post->ID)){
+		if ( !current_user_can( 'edit_post', $post->ID ) ) {
 			return $post->ID;
 		}
-		if($post->post_type == 'revision' ){return;}
+		if ( $post->post_type == 'revision' ) {return;}
 
-		foreach( $_POST['wp_translations_badges_metabox_prefix'] as $prefix ){
-			if(!isset($_POST[$prefix])){continue;}
+		foreach ( $_POST['wp_translations_badges_metabox_prefix'] as $prefix ) {
+			if ( !isset( $_POST[$prefix] ) ) {continue;}
 
 
-			delete_post_meta($post->ID, $prefix);
-			add_post_meta($post->ID, $prefix, $_POST[$prefix]);
+			delete_post_meta( $post->ID, $prefix );
+			add_post_meta( $post->ID, $prefix, $_POST[$prefix] );
 			//foreach($_POST['wp_translations_badges'] as $field=>$data){
 
-				//if(is_array($data)){
-				//	foreach($data as $item){
-				//		add_post_meta($post->ID, 'wp_translations_badges_'.$field, $item);
-				//	}
-				//}else{
+			//if(is_array($data)){
+			// foreach($data as $item){
+			//  add_post_meta($post->ID, 'wp_translations_badges_'.$field, $item);
+			// }
+			//}else{
 
-				//}
+			//}
 			//}
 		}
 	}
@@ -664,12 +679,12 @@ class Wp_Translations_Badges {
 	 * create and register an instance ID
 	 *
 	 */
-	public function element_instance_id($id, $process){
+	public function element_instance_id( $id, $process ) {
 
 		$this->element_instances[$id][$process][] = true;
-		$count = count($this->element_instances[$id][$process]);
-		if($count > 1){
-			return $id.($count-1);
+		$count = count( $this->element_instances[$id][$process] );
+		if ( $count > 1 ) {
+			return $id.( $count-1 );
 		}
 		return $id;
 	}
@@ -678,61 +693,61 @@ class Wp_Translations_Badges {
 	 * Render the element
 	 *
 	 */
-	public function render_element($atts, $content, $slug, $head = false) {
+	public function render_element( $atts, $content, $slug, $head = false ) {
 
 		$raw_atts = $atts;
 
 
-		if(!empty($head)){
-			$instanceID = $this->element_instance_id('wp_translations_badges'.$slug, 'header');
-		}else{
-			$instanceID = $this->element_instance_id('wp_translations_badges'.$slug, 'footer');
+		if ( !empty( $head ) ) {
+			$instanceID = $this->element_instance_id( 'wp_translations_badges'.$slug, 'header' );
+		}else {
+			$instanceID = $this->element_instance_id( 'wp_translations_badges'.$slug, 'footer' );
 		}
 
 		//$configfiles = glob(self::get_path( __FILE__ ) .'configs/'.$slug.'-*.php');
-		if(file_exists(self::get_path( __FILE__ ) .'configs/fieldgroups-'.$slug.'.php')){
+		if ( file_exists( self::get_path( __FILE__ ) .'configs/fieldgroups-'.$slug.'.php' ) ) {
 			include self::get_path( __FILE__ ) .'configs/fieldgroups-'.$slug.'.php';
 
 			$defaults = array();
-			foreach($configfiles as $file){
+			foreach ( $configfiles as $file ) {
 
 				include $file;
-				foreach($group['fields'] as $variable=>$conf){
-					if(!empty($group['multiple'])){
-						$value = array($this->process_value($conf['type'],$conf['default']));
-					}else{
-						$value = $this->process_value($conf['type'],$conf['default']);
+				foreach ( $group['fields'] as $variable=>$conf ) {
+					if ( !empty( $group['multiple'] ) ) {
+						$value = array( $this->process_value( $conf['type'], $conf['default'] ) );
+					}else {
+						$value = $this->process_value( $conf['type'], $conf['default'] );
 					}
-					if(!empty($group['multiple'])){
-						if(isset($atts[$variable.'_1'])){
+					if ( !empty( $group['multiple'] ) ) {
+						if ( isset( $atts[$variable.'_1'] ) ) {
 							$index = 1;
 							$value=array();
-							while(isset($atts[$variable.'_'.$index])){
-								$value[] = $this->process_value($conf['type'],$atts[$variable.'_'.$index]);
+							while ( isset( $atts[$variable.'_'.$index] ) ) {
+								$value[] = $this->process_value( $conf['type'], $atts[$variable.'_'.$index] );
 								$index++;
 							}
-						}elseif (isset($atts[$variable])) {
-							if(is_array($atts[$variable])){
-								foreach($atts[$variable] as &$varval){
-									$varval = $this->process_value($conf['type'],$varval);
+						}elseif ( isset( $atts[$variable] ) ) {
+							if ( is_array( $atts[$variable] ) ) {
+								foreach ( $atts[$variable] as &$varval ) {
+									$varval = $this->process_value( $conf['type'], $varval );
 								}
 								$value = $atts[$variable];
-							}else{
-								$value[] = $this->process_value($conf['type'],$atts[$variable]);
+							}else {
+								$value[] = $this->process_value( $conf['type'], $atts[$variable] );
 							}
 						}
-					}else{
-						if(isset($atts[$variable])){
-							$value = $this->process_value($conf['type'],$atts[$variable]);
+					}else {
+						if ( isset( $atts[$variable] ) ) {
+							$value = $this->process_value( $conf['type'], $atts[$variable] );
 						}
 					}
 
-					if(!empty($group['multiple']) && !empty($value)){
-						foreach($value as $key=>$val){
+					if ( !empty( $group['multiple'] ) && !empty( $value ) ) {
+						foreach ( $value as $key=>$val ) {
 							//if(is_array($val)){
-								$groups[$group['master']][$key][$variable] = $val;
+							$groups[$group['master']][$key][$variable] = $val;
 							//}elseif(strlen($val) > 0){
-							//	$groups[$group['master']][$key][$variable] = $val;
+							// $groups[$group['master']][$key][$variable] = $val;
 							//}
 						}
 					}
@@ -763,38 +778,38 @@ class Wp_Translations_Badges {
 		}
 		// pull in the assets
 		$assets = array();
-		if(file_exists(self::get_path( __FILE__ ) . 'assets/assets-'.$slug.'.php')){
+		if ( file_exists( self::get_path( __FILE__ ) . 'assets/assets-'.$slug.'.php' ) ) {
 			include self::get_path( __FILE__ ) . 'assets/assets-'.$slug.'.php';
 		}
 
 		ob_start();
-		if(file_exists(self::get_path( __FILE__ ) . 'includes/element-'.$slug.'.php')){
+		if ( file_exists( self::get_path( __FILE__ ) . 'includes/element-'.$slug.'.php' ) ) {
 			include self::get_path( __FILE__ ) . 'includes/element-'.$slug.'.php';
-		}else if( file_exists(self::get_path( __FILE__ ) . 'includes/element-'.$slug.'.html')){
-			include self::get_path( __FILE__ ) . 'includes/element-'.$slug.'.html';
-		}
+		}else if ( file_exists( self::get_path( __FILE__ ) . 'includes/element-'.$slug.'.html' ) ) {
+				include self::get_path( __FILE__ ) . 'includes/element-'.$slug.'.html';
+			}
 		$out = ob_get_clean();
 
 
-		if(!empty($head)){
+		if ( !empty( $head ) ) {
 
 			// process headers - CSS
-			if(file_exists(self::get_path( __FILE__ ) . 'assets/css/styles-'.$slug.'.php')){
+			if ( file_exists( self::get_path( __FILE__ ) . 'assets/css/styles-'.$slug.'.php' ) ) {
 				ob_start();
 				include self::get_path( __FILE__ ) . 'assets/css/styles-'.$slug.'.php';
 				$this->element_header_styles[] = ob_get_clean();
-				add_action('wp_head', array( $this, 'header_styles' ) );
-			}else if( file_exists(self::get_path( __FILE__ ) . 'assets/css/styles-'.$slug.'.css')){
-				wp_enqueue_style( $this->plugin_slug . '-'.$slug.'-styles', self::get_url( 'assets/css/styles-'.$slug.'.css', __FILE__ ), array(), self::VERSION );
-			}
+				add_action( 'wp_head', array( $this, 'header_styles' ) );
+			}else if ( file_exists( self::get_path( __FILE__ ) . 'assets/css/styles-'.$slug.'.css' ) ) {
+					wp_enqueue_style( $this->plugin_slug . '-'.$slug.'-styles', self::get_url( 'assets/css/styles-'.$slug.'.css', __FILE__ ), array(), self::VERSION );
+				}
 			// process headers - JS
-			if(file_exists(self::get_path( __FILE__ ) . 'assets/js/scripts-'.$slug.'.php')){
+			if ( file_exists( self::get_path( __FILE__ ) . 'assets/js/scripts-'.$slug.'.php' ) ) {
 				ob_start();
 				include self::get_path( __FILE__ ) . 'assets/js/scripts-'.$slug.'.php';
 				$this->element_footer_scripts[] = ob_get_clean();
-			}else if( file_exists(self::get_path( __FILE__ ) . 'assets/js/scripts-'.$slug.'.js')){
-				wp_enqueue_script( $this->plugin_slug . '-'.$slug.'-script', self::get_url( 'assets/js/scripts-'.$slug.'.js', __FILE__ ), array( 'jquery' ), self::VERSION , true );
-			}
+			}else if ( file_exists( self::get_path( __FILE__ ) . 'assets/js/scripts-'.$slug.'.js' ) ) {
+					wp_enqueue_script( $this->plugin_slug . '-'.$slug.'-script', self::get_url( 'assets/js/scripts-'.$slug.'.js', __FILE__ ), array( 'jquery' ), self::VERSION , true );
+				}
 			// get clean do shortcode for header checking
 			ob_start();
 			do_shortcode( $out );
@@ -815,7 +830,7 @@ class Wp_Translations_Badges {
 			add_filter( 'the_content', 'wpautop' );
 		}*/
 
-		return do_shortcode($out);
+		return do_shortcode( $out );
 	}
 
 	/**
@@ -828,17 +843,17 @@ class Wp_Translations_Badges {
 
 
 		// find used shortcodes within posts
-		foreach ($wp_query->posts as $key => &$post) {
-			$shortcodes = self::get_used_shortcodes($post->post_content);
-			if(!empty($shortcodes[2])){
-				foreach($shortcodes[2] as $foundkey=>$shortcode){
+		foreach ( $wp_query->posts as $key => &$post ) {
+			$shortcodes = self::get_used_shortcodes( $post->post_content );
+			if ( !empty( $shortcodes[2] ) ) {
+				foreach ( $shortcodes[2] as $foundkey=>$shortcode ) {
 					$atts = array();
-					if(!empty($shortcodes[3][$foundkey])){
-						$atts = shortcode_parse_atts($shortcodes[3][$foundkey]);
+					if ( !empty( $shortcodes[3][$foundkey] ) ) {
+						$atts = shortcode_parse_atts( $shortcodes[3][$foundkey] );
 					}
 
 					// process header portion
-					$this->render_element($atts, $post->post_content, $shortcode, true);
+					$this->render_element( $atts, $post->post_content, $shortcode, true );
 				}
 			}
 		}
@@ -851,9 +866,9 @@ class Wp_Translations_Badges {
 	 *
 	 */
 	public function header_styles() {
-		if(!empty($this->element_header_styles)){
+		if ( !empty( $this->element_header_styles ) ) {
 			echo "<style type=\"text/css\">\r\n";
-			foreach($this->element_header_styles as $styles){
+			foreach ( $this->element_header_styles as $styles ) {
 				echo $styles."\r\n";
 			}
 			echo "</style>\r\n";
@@ -866,11 +881,11 @@ class Wp_Translations_Badges {
 	 */
 	public function footer_scripts() {
 
-		if(!empty($this->element_footer_scripts)){
+		if ( !empty( $this->element_footer_scripts ) ) {
 			echo "<script type=\"text/javascript\">\r\n";
-				foreach($this->element_footer_scripts as $script){
-					echo $script."\r\n";
-				}
+			foreach ( $this->element_footer_scripts as $script ) {
+				echo $script."\r\n";
+			}
 			echo "</script>\r\n";
 		}
 	}
@@ -881,9 +896,9 @@ class Wp_Translations_Badges {
 	 * Get the current URL
 	 *
 	 */
-	static function get_url($src = null, $path = null) {
-		if(!empty($path)){
-			return plugins_url( $src, $path);
+	static function get_url( $src = null, $path = null ) {
+		if ( !empty( $path ) ) {
+			return plugins_url( $src, $path );
 		}
 		return trailingslashit( plugins_url( $path , __FILE__ ) );
 	}
@@ -892,7 +907,7 @@ class Wp_Translations_Badges {
 	 * Get the current URL
 	 *
 	 */
-	static function get_path($src = null) {
+	static function get_path( $src = null ) {
 		return plugin_dir_path( $src );
 
 	}
