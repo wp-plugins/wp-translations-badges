@@ -1,16 +1,18 @@
 <?php
 /**
+ *
+ *
  * @package   Wp_Translations_Badges
  * @author    Myles McNamara <myles@smyl.es>, fxbenard <fxb@wp-translations.org>
  * @license   GPL-2.0+
  * @link      http://smyl.es
- * @copyright 2014 Myles McNamara, fxbenard
+ * @copyright 2015 Myles McNamara, fxbenard
  *
  * @wordpress-plugin
  * Plugin Name: WP-Translations Badges
  * Plugin URI:  http://github.com/wp-translations/wp-translations-badges
  * Description: Display WP-Translations badges on your site with Shortcode or Widget
- * Version:     1.0.6
+ * Version:     1.0.8
  * Author:      fxbenard | FxB
  * Author URI:  http://wp-translations.org
  * Text Domain: wp-translations-badges
@@ -26,9 +28,9 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-require_once( plugin_dir_path( __FILE__ ) . 'class-wp-translations-badges.php' );
+require_once plugin_dir_path( __FILE__ ) . 'class-wp-translations-badges.php' ;
 
-require_once( plugin_dir_path( __FILE__ ) . '/includes/widget-wp_translations_badge.php' );
+require_once plugin_dir_path( __FILE__ ) . '/includes/widget-wp_translations_badge.php' ;
 
 // Register hooks that are fired when the plugin is activated or deactivated.
 // When the plugin is deleted, the uninstall.php file is loaded.
@@ -40,6 +42,6 @@ add_action( 'plugins_loaded', array( 'Wp_Translations_Badges', 'get_instance' ) 
 //Wp_Translations_Badges::get_instance();
 
 // Add filter to add new plugin row meta
-add_filter( 'plugin_row_meta', array( 'Wp_Translations_Badges', 'add_wptb_row_meta'), 10, 4 );
+add_filter( 'plugin_row_meta', array( 'Wp_Translations_Badges', 'add_wptb_row_meta' ), 10, 4 );
 
 ?>
